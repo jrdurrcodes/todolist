@@ -1,0 +1,54 @@
+* {box-sizing: border-box;}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: lightblue;
+}
+
+h1 {
+    color:blue;
+    text-shadow: 3px 3px 3px navy
+}
+
+h2, .text, .site-link{
+    color: blue
+}
+
+label {
+    color: navy ;
+}
+
+p {
+    font-size: 26px;
+}
+
+.header {
+    padding: 10px 0;
+    background-color: antiquewhite;
+    background-image: linear-gradient(navy);
+    border-bottom: 3px navy;
+}
+
+
+
+.footer {
+    padding: 10px 0;
+}
+
+.main {
+    padding: 10px 0; 
+}
+
+
+.section {
+    margin-bottom: 40px;
+    padding: 10px 5px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+#addTaskBtn {
+    color:blue;
+    background-color: lightskyblue;
+}

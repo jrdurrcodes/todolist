@@ -10,19 +10,20 @@
 <body>
     <header class="header" id="header">
         <div class="container">
-            <h1 class="display-1 text-uppercase texr center text-md-start">to do list</h1>
+            <h1 class="display-1 text-uppercase text-center  text-md-start">to do list</h1>
             <p class="text-center text-md-start fst-italic">Get busy.</p>
         </div>
     </header>
     <main class="main" id="main">
         <div class="container">
             <div class="row top-row" id="topRow">
+                <div class="row"></div>
                 <div class="col-md-5">
-                    <!-- inout tasks -->
+                    <!-- input tasks -->
                     <section class="input-section section">
                         <form action="#" class="input-form"
                             id="inputForm">
-                            <label for="taskInout"
+                            <label for="taskInput"
                             class="form-label"
                             text-capitalize>enter task</label>
                             <div class="input-group">
@@ -50,14 +51,33 @@
                         <form action="#"
                             class="task-form"
                             id="taskForm">
-                                <ol class="task </ol>
+                                <ol class="task-list list-group  mb-5" id="taskList"></ol> 
+                                    <button class="btn text-capitalize" id="completedBtn">submit completed tasks</button>
                         </form>
                     </section>
                 </div>
                 </div>
+                <div class="row bottom-row" id="bottomRow">
+                    <div class="col">
+                        <section class="completed-section section">
+                            <p class="text-capitalize">tasks completed:
+                                <span id="completedTasks">0</span>
+                            </p>
+                            <ul class="list-group"
+                            id="completeList"></ul>
+                        </section>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
+    <footer class="footer" id=""footer>
+        <div class="container">
+            <p class="colophon text-center">site by 
+                <a class="site-link" href="https://github.com/jrdurrcodes/mywebproject" target="_blank">janjala</a>&copy; 2024
+            </p>
+        </div>
+    </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script src="js/app.js"></script>
 
