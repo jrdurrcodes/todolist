@@ -14,6 +14,11 @@ const completedBtn = document.getElementById('completedBtn')
 const completedList = document.getElementById('completedList')
 const completedTasks = document.getElementById('completedTasks')
 
+
+//testing make task item 
+let prevItem
+let currentItem
+
 //array of tasks
 let taskArray = []
 
@@ -38,7 +43,7 @@ addTaskBtn.addEventListener('click', (e)=> {
 
 //take input
 const validateInput =()=> {
-
+//testing
     // if (taskInput.value === '') {
     //     alert('Please enter a task before submitting')
     // } else {
@@ -46,8 +51,22 @@ const validateInput =()=> {
     //     makeTask(taskInput.value)
     // }
 
-    taskInput.value === '' ? alert('Please enter a task before submitting') : makeTask(taskInput.value)
+    if (taskInput.value === '') {
+        alert('Please enter a task before submitting') 
+    }   else {
+
+        for(let i = 0; i < taskArray.length; i++) {
+            if(taskInput.value == taskArray[i].task) {
+                alert('Task has already been added')
+                taskInput.value = ''
+                return 
+            } 
+        }
+    makeTask(taskInput.value)
+    
+    //end testing
     taskInput.value = ''
+}
 }
 
 //make task 
@@ -84,6 +103,7 @@ const makeTaskItem =(el, item)=> {
     const checkbox = document.createElement('input')
     checkbox.setAttribute('type', 'checkbox')
     checkbox.setAttribute('id', `taskId-${item.id}`)
+    checkbox.setAttribute('data-id', `${item.id}`)
     checkbox.classList.add('form-check-input', 'checkbox')
 
     const label = document.createElement('label')
@@ -119,53 +139,33 @@ completedBtn.addEventListener('click', (e)=> {
 const validateCompletedTasks =()=> {
     let completedArray = []
     const checkboxes = document.querySelectorAll('.checkbox')
-    const allTasks = document.querySelectorAll('.task-label')
+    
     //testing...
+    for (let i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked && (checkboxes[i].
+            getAttribute('data-id') ==taskArray[i].id)) {
+                taskArray[i] = {
+            ...taskArray[i],
+            isCompleted: true,
+            dateCompleted: new Date().toString()
+            }
+        }
+    }
     
     for(let i = 0; i < taskArray.length; i++) {
-        // console.log(taskArray[i].isCompleted)
-        let isComplete = taskArray[i].isCompleted //t or f
-
-        for ( i - 0; i < checkboxes.length; i++) {
-            if (checkboxes[i].checked && (allTasks[i]. 
-                getAttribute('for') == checkboxes[i]. 
-                getAttribute('id'))) {
-
-                    // isComplete = !isComplete
-                    let dateCompleted = new Date() 
-
-                    taskArray[i]  = {
-                        ...taskArray[i],
-                        isCompleted: isComplete,
-                        dateCompleted: dateCompleted.toString()
-                    }
-
-                    allTasks[i].classList.add('text-success')
-                    completedArray = [...completedArray, allTasks[i].innerText]
-                }
+        
+        if(taskArray[i].isCompleted) {
+            completedArray = [...completedArray, taskArray[i]]
+        }
+    }
                 
-        } 
-{
-    
-}}
+    //end testing...SUCCESS!!
 
+    completedTasks.innerText = completedArray.length
+    makeCompleteItem(completedArray)   
+}
 
     //end testing...
-
-    // for (let i = 0; i <checkboxes.length; i++) {
-    //     if (checkboxes[i].checked && (allTasks[i].getAttribute('for') == checkboxes[i].getAttribute('id'))) {
-
-    //         allTasks[i].classList.add('text-success')
-    //         completedArray = [...completedArray, allTasks[i].innerText]
-            
-    //         //loop through taskArray and set is completed to !isCompleted
-    //         //update dateCompleted
-    //     }
-    }
-    completedTasks.innerText = completedArray.length 
-    // console.log(completedArray)
-    makeCompleteItem(completedArray)
-}
 
 
 //make li for completedList
@@ -173,12 +173,22 @@ const validateCompletedTasks =()=> {
 const makeCompleteItem =(arr)=> {
 
         arr.forEach(item => {
-        const task = item
+        const task = item.task
+        const dateCompleted = item.dateCompleted
 
         const completedItem  = document.createElement('li')
         completedItem.classList.add('list-group-item', 'text-success', 'text-capitalize', 'completed-item')
-            completedItem.innertext = task
+        completedItem.innerText = `${task} | completed:  
+        ${dateCompleted}`
 
-        completedList.appendchild(completedItem)
+        //testing...
+        currentItem = task
+
+        if(currentItem !== prevItem) {
+            completedList.appendChild(completedItem)
+            prevItem = currentItem
+            return
+
+        }
     })
 }
